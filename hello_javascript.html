@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+
+<body id='container'>
+    <script type="module">
+        // try import external module
+        import {
+            halfOf,
+            multiply
+        } from './scripts/lib.js'
+
+        alert("calling from lib: " + halfOf(15));
+        var i = 3
+
+        // way to modify html elements while async load external file
+        var container = document.getElementById("container");
+        var content = document.createElement("span");
+        content.innerHTML = "Hello calling external multiply: " + multiply(5,6);
+        container.appendChild(content);
+    </script>
+    <h1>Hello World!</h1>
+</body>
+
+</html>
