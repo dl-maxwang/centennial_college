@@ -3,8 +3,18 @@
 
 <body id='container'>
     <script type="module">
+        function addStringBlock(str) {
+            // way to modify html elements while async load external file
+            var container = document.getElementById("container");
+            var content = document.createElement("div");
+            content.innerHTML = str;
+            container.appendChild(content);
+        }
+
         // try import external module
         import {
+            flag,
+            touch,
             halfOf,
             multiply
         } from './scripts/lib.js'
@@ -12,12 +22,71 @@
         alert("calling from lib: " + halfOf(15));
         var i = 3
 
-        // way to modify html elements while async load external file
-        var container = document.getElementById("container");
-        var content = document.createElement("span");
-        content.innerHTML = "Hello calling external multiply: " + multiply(5,6);
-        container.appendChild(content);
+        // external bindings
+        addStringBlock("external binding: " + flag);
+        touch();
+        addStringBlock("after touch(): " + flag);
     </script>
+
+    <!-- classes -->
+    <script type="module">
+        // import {Car} from './scripts/classes.js'
+        // let car = new Car("blue");
+        // console.log(car.toString());
+
+        //------------arrow functions-------------------
+        let numbers = [2, 3, 6, 9, 10]
+        const squares = numbers.map(n => n * n);
+        console.log(squares)
+        let evens = [];
+        numbers.forEach(n => {
+            if (n % 2 == 0) {
+                evens.push(n)
+            }
+        });
+        console.log(evens);
+
+        const author = {
+            fullName: "Claire",
+            books: ["time history", "little prince"],
+            printBooks() {
+                this.books.forEach(b => console.log(b + ' by ' + this.fullName))
+            }
+        }
+        author.printBooks();
+
+        // let and const
+        // let only live on it's block
+        const ci = 3;
+        // ci = 4; // illegal
+
+        //-------------default rest spread------------
+        function add2(x, y = 0) {
+            return x + y;
+        }
+        console.log("default para: " + add2(5));
+        console.log("explicit param: " + add2(3, 4));
+
+        console.log("extendable parameters");
+
+        function addMulti(x, ...leftovers) {
+            let ret = x;
+            console.log("param length: " + leftovers.length);
+            leftovers.forEach(n => ret += n);
+            return ret;
+        }
+
+        console.log("extendable params: " + addMulti(5,1,2,3,4,5,6))
+        
+        function take3params(p1, p2, p3){
+            console.log(p1);
+            console.log(p2);
+            console.log(p3);
+        }
+        take3params(...['hello', 'java', 'script']);
+        
+    </script>
+
     <h1>Hello World!</h1>
 </body>
 

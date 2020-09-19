@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<body>
+    <script type="module">
+        // closure
+        function parent() {
+            let msg = 'js support closure!';
+            console.log("parent func is called");
+
+            function child() {
+                console.log("message from inner func: " + msg);
+            }
+            return child;
+        }
+        // js support function handle
+        const pFunction = parent();
+        pFunction();
+    </script>
+
+</body>
+</html>
