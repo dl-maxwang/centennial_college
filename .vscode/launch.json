@@ -1,0 +1,19 @@
+{
+    "version": "0.1.0",
+    "configurations": [{
+            "name": "Launch current file",
+            "type": "chrome",
+            "request": "launch",
+            "file": "${file}"
+            //"file": "${workspaceFolder}/hello_javascript.html"
+        },
+        {
+            "name": "Launch localhost",
+            "type": "chrome",
+            "request": "launch",
+            "url": "http://localhost:8999/${workspaceFolderBasename}/${fileBasename}",
+            "webRoot": "${workspaceFolder}",
+        }
+
+    ]
+}
